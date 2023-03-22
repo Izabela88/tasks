@@ -1,8 +1,6 @@
 from task.serializers import TaskSerializer, TileSerializer
-from task.models import Task, Tile, TaskType
+from task.models import Task, Tile
 from rest_framework import generics
-from rest_framework import mixins
-
 
 
 class TaskList(generics.ListCreateAPIView):
