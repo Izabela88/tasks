@@ -3,6 +3,9 @@ from task.value_objects import TileStatus
 
 
 class BaseModel(models.Model):
+    class Meta:
+        abstract = True
+
     id = models.UUIDField(primary_key=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     modified_at = models.DateTimeField(auto_now_add=True, null=False)
