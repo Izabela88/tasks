@@ -1,5 +1,6 @@
 from django.contrib import admin
-from task.models import Task, Tile, TaskType
+
+from task.models import Task, TaskType, Tile
 
 
 class TaskAdmin(admin.ModelAdmin):

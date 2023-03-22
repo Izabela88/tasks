@@ -1,6 +1,8 @@
-from django.db import models
-from task.value_objects import TileStatus
 import uuid
+
+from django.db import models
+
+from task.value_objects import TileStatus
 
 
 class BaseModel(models.Model):

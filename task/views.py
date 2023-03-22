@@ -1,7 +1,7 @@
-from task.serializers import TaskSerializer, TileSerializer
+from rest_framework import generics, permissions
+
 from task.models import Task, Tile
-from rest_framework import generics
-from rest_framework import permissions
+from task.serializers import TaskSerializer, TileSerializer
 
 
 class TaskList(generics.ListCreateAPIView):

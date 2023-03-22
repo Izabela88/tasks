@@ -1,11 +1,10 @@
 from django.urls import path
-
-from user import views
-
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
+from user import views
 
 urlpatterns = [
     path("create/", views.CreateUserView.as_view(), name="create"),
