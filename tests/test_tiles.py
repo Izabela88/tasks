@@ -1,4 +1,5 @@
 import pytest
+
 from task.models import Tile
 from task.value_objects import TileStatus
 
@@ -35,7 +36,7 @@ def test_create_tile_successful(authorized_client):
         "status": "PENDING",
         "launch_date": "2023-03-22T15:51:53.565658Z",
     }
-    url = f"/api/tiles/"
+    url = "/api/tiles/"
     assert len(Tile.objects.all()) == 0
 
     resp = authorized_client.post(url, data=data)
@@ -47,7 +48,7 @@ def test_create_tile_successful(authorized_client):
 @pytest.mark.django_db
 def test_create_tile_unsuccessful(authorized_client):
     data = {}
-    url = f"/api/tiles/"
+    url = "/api/tiles/"
     assert len(Tile.objects.all()) == 0
 
     resp = authorized_client.post(url, data=data)

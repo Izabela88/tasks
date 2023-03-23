@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from task.value_objects import TileStatus
+
 from task.models import Task, Tile
 
 

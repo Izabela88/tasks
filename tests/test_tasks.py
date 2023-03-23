@@ -1,6 +1,7 @@
 import pytest
-from task.models import Task
 from rest_framework.test import APIClient
+
+from task.models import Task
 
 
 @pytest.mark.django_db
@@ -25,11 +26,11 @@ def test_user_is_not_authenticated():
     client = APIClient()
     resp_tasks = client.get("/api/tasks/")
     resp_task_detail = client.get(
-        f"/api/tasks/712b7fd0-88c2-476f-a379-e38cc23af608/"
+        "/api/tasks/712b7fd0-88c2-476f-a379-e38cc23af608/"
     )
     resp_tiles = client.get("/api/tiles/")
     resp_tile_detail = client.get(
-        f"/api/tiles/712b7fd0-88c2-476f-a379-e38cc23af444/"
+        "/api/tiles/712b7fd0-88c2-476f-a379-e38cc23af444/"
     )
     assert resp_tasks.status_code == 401
     assert resp_task_detail.status_code == 401
@@ -43,7 +44,7 @@ def test_delete_task(create_task, authorized_client):
     url = f"/api/tasks/{create_task.id}/"
     resp = authorized_client.delete(url)
     assert resp.status_code == 204
-    assert Task.objects.filter(id=task.id).exists() == False
+    assert Task.objects.filter(id=task.id).exists() is False
 
 
 @pytest.mark.django_db
@@ -57,7 +58,7 @@ def test_create_task_successful(
         "tile_id": create_tile.id,
         "task_type": create_task_type,
     }
-    url = f"/api/tasks/"
+    url = "/api/tasks/"
     assert len(Task.objects.all()) == 0
 
     resp = authorized_client.post(url, data=data)
@@ -75,7 +76,7 @@ def test_create_task_unsuccessful(authorized_client):
         "tile_id": "",
         "task_type": "",
     }
-    url = f"/api/tasks/"
+    url = "/api/tasks/"
     assert len(Task.objects.all()) == 0
 
     resp = authorized_client.post(url, data=data)

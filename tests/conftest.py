@@ -1,9 +1,11 @@
-import pytest
-from task.models import Task, Tile, TaskType
-from task.value_objects import TileStatus
 import datetime
-from rest_framework_simplejwt.tokens import RefreshToken
+
+import pytest
 from rest_framework.test import APIClient
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from task.models import Task, TaskType, Tile
+from task.value_objects import TileStatus
 
 
 @pytest.fixture
