@@ -1,6 +1,5 @@
 import pytest
 from task.models import Task
-
 from rest_framework.test import APIClient
 
 
@@ -52,12 +51,10 @@ def test_create_task_successful(
     authorized_client, create_tile, create_task_type
 ):
     data = {
-        "created_at": "2023-03-22T15:52:17.383146Z",
-        "modified_at": "2023-03-22T15:52:17.383183Z",
         "title": "Test",
         "order": "Test Order",
         "description": "Description Test",
-        "tile": create_tile.id,
+        "tile_id": create_tile.id,
         "task_type": create_task_type,
     }
     url = f"/api/tasks/"
@@ -72,12 +69,10 @@ def test_create_task_successful(
 @pytest.mark.django_db
 def test_create_task_unsuccessful(authorized_client):
     data = {
-        "created_at": "2023-03-22T15:52:17.383146Z",
-        "modified_at": "2023-03-22T15:52:17.383183Z",
         "title": "Test",
         "order": "Test Order",
         "description": "Description Test",
-        "tile": "",
+        "tile_id": "",
         "task_type": "",
     }
     url = f"/api/tasks/"
@@ -87,3 +82,37 @@ def test_create_task_unsuccessful(authorized_client):
 
     assert resp.status_code == 400
     assert len(Task.objects.all()) == 0
+
+
+def test_partial_task_update(authorized_client, create_task):
+    task = create_task
+    data = {
+        "description": "New Description Test",
+    }
+    url = f"/api/tasks/{create_task.id}/"
+    resp = authorized_client.patch(url, data=data)
+    assert resp.status_code == 200
+    task.refresh_from_db()
+    assert task.description == data["description"]
+
+
+def test_full_task_update(
+    authorized_client, create_task, create_tile, create_task_type
+):
+    task = create_task
+    data = {
+        "title": "New Test",
+        "order": "New Test Order",
+        "description": "New Description Test",
+        "tile_id": create_tile.id,
+        "task_type": create_task_type,
+    }
+    url = f"/api/tasks/{create_task.id}/"
+    resp = authorized_client.put(url, data=data)
+    assert resp.status_code == 200
+    task.refresh_from_db()
+    assert task.title == data["title"]
+    assert task.order == data["order"]
+    assert task.description == data["description"]
+    assert task.tile.id == data["tile_id"]
+    assert task.task_type == data["task_type"]
