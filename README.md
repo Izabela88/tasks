@@ -15,4 +15,11 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+To run test:
+
+```shell
+$ pytest tests
+```
+
+
 Python 3.11.1
