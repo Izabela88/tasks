@@ -1,13 +1,19 @@
 from rest_framework import serializers
-
+from task.value_objects import TileStatus
 from task.models import Task, Tile
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    tile_id = serializers.UUIDField(required=True)
+
     class Meta:
         model = Task
-        fields = "__all__"
-        read_only_fields = ("id",)
+        exclude = ("tile",)
+        read_only_fields = (
+            "id",
+            "created_at",
+            "updated_at",
+        )
 
 
 class TileSerializer(serializers.ModelSerializer):
@@ -23,4 +29,9 @@ class TileSerializer(serializers.ModelSerializer):
             "modified_at",
             "tasks",
         )
-        read_only_fields = ("id", "tasks")
+        read_only_fields = (
+            "id",
+            "tasks",
+            "created_at",
+            "updated_at",
+        )
