@@ -2,9 +2,9 @@ from enum import StrEnum
 
 
 class TileStatus(StrEnum):
-    LIVE = "live"
-    PENDING = "pending"
-    ARCHIVED = "archived"
+    LIVE = "LIVE"
+    PENDING = "PENDING"
+    ARCHIVED = "ARCHIVED"
 
     @classmethod
     def choices(cls):
