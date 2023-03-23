@@ -9,6 +9,7 @@ djangorestframework = "==3.10"
 djangorestframework-simplejwt = "==5.2.2"
 pytest = "*"
 pytest-django = "*"
+python-dotenv = "*"
 
 [dev-packages]
 black = "*"
