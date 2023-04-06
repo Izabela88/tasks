@@ -19,6 +19,12 @@ class Tile(BaseModel):
 
     status = models.CharField(max_length=50, choices=TileStatus.choices())
     launch_date = models.DateTimeField(auto_now_add=True, null=False)
+    
+    def __str__(self):
+        return self.status
+    
+    class Meta:
+        ordering = ["-created_at"]
 
 
 class TaskType(models.Model):
@@ -43,3 +49,6 @@ class Task(BaseModel):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ["-created_at"]
