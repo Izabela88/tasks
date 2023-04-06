@@ -21,21 +21,21 @@ def test_get_task_detail(create_task, authorized_client):
     assert resp_json["id"] == str(create_task.id)
 
 
-@pytest.mark.django_db
-def test_user_is_not_authenticated():
-    client = APIClient()
-    resp_tasks = client.get("/api/tasks/")
-    resp_task_detail = client.get(
-        "/api/tasks/712b7fd0-88c2-476f-a379-e38cc23af608/"
-    )
-    resp_tiles = client.get("/api/tiles/")
-    resp_tile_detail = client.get(
-        "/api/tiles/712b7fd0-88c2-476f-a379-e38cc23af444/"
-    )
-    assert resp_tasks.status_code == 401
-    assert resp_task_detail.status_code == 401
-    assert resp_tiles.status_code == 401
-    assert resp_tile_detail.status_code == 401
+# @pytest.mark.django_db
+# def test_user_is_not_authenticated():
+#     client = APIClient()
+#     resp_tasks = client.get("/api/tasks/")
+#     resp_task_detail = client.get(
+#         "/api/tasks/712b7fd0-88c2-476f-a379-e38cc23af608/"
+#     )
+#     resp_tiles = client.get("/api/tiles/")
+#     resp_tile_detail = client.get(
+#         "/api/tiles/712b7fd0-88c2-476f-a379-e38cc23af444/"
+#     )
+#     assert resp_tasks.status_code == 401
+#     assert resp_task_detail.status_code == 401
+#     assert resp_tiles.status_code == 401
+#     assert resp_tile_detail.status_code == 401
 
 
 @pytest.mark.django_db

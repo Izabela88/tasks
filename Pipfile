@@ -10,6 +10,7 @@ djangorestframework-simplejwt = "==5.2.2"
 pytest = "*"
 pytest-django = "*"
 python-dotenv = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 black = "*"
