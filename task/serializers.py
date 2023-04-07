@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from task.models import Task, Tile
+from task.models import Task, Tile, TaskType
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -35,3 +35,9 @@ class TileSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         )
+
+
+class TaskTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaskType
+        fields = "__all__"
