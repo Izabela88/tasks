@@ -18,7 +18,7 @@ class Tile(BaseModel):
     """Tile object."""
 
     status = models.CharField(max_length=50, choices=TileStatus.choices())
-    launch_date = models.DateTimeField(default=timezone.now(), null=False)
+    launch_date = models.DateTimeField(default=timezone.now, null=False)
 
     def __str__(self):
         return self.status
